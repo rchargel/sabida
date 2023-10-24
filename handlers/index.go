@@ -1,18 +1,33 @@
 package handlers
 
 import (
-	"github.com/rchargel/sabida/models"
+	"context"
+	"log"
+
+	"github.com/rchargel/sabida/dao"
 
 	"github.com/gin-gonic/gin"
 )
 
-func ShowIndexPage(c *gin.Context) {
-	articles := models.GetAllArticles()
+type IndexHandler struct {
+	Conn *dao.Queries
+}
+
+func NewIndexHandler(conn *dao.Queries) *IndexHandler {
+	return &IndexHandler{conn}
+}
+
+func (i *IndexHandler) ShowIndexPage(c *gin.Context) {
+	ctx := context.Background()
+	categories, err := i.Conn.ListCategories(ctx)
+	if err != nil {
+		log.Panic(err)
+	}
 
 	// Call the render function with the name of the template to render
 	render(c, gin.H{
 		"title":   "Sabida",
-		"payload": articles,
+		"payload": categories,
 	}, "index.html")
 
 }
