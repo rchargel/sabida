@@ -27,14 +27,14 @@ CREATE TABLE categories(
 CREATE INDEX idx_categories_deleted_at ON categories(deleted_at);
 
 INSERT INTO categories (name, belongs_to, created_by, updated_by) VALUES
-('front-end', (select id from organizations where name = 'SYSTEM'), (select id from users where username = 'SYSTEM'), (select id from users where username = 'SYSTEM')),
-('back-end', (select id from organizations where name = 'SYSTEM'), (select id from users where username = 'SYSTEM'), (select id from users where username = 'SYSTEM')),
-('framework', (select id from organizations where name = 'SYSTEM'), (select id from users where username = 'SYSTEM'), (select id from users where username = 'SYSTEM')),
-('language', (select id from organizations where name = 'SYSTEM'), (select id from users where username = 'SYSTEM'), (select id from users where username = 'SYSTEM')),
-('database', (select id from organizations where name = 'SYSTEM'), (select id from users where username = 'SYSTEM'), (select id from users where username = 'SYSTEM')),
-('no-sql', (select id from organizations where name = 'SYSTEM'), (select id from users where username = 'SYSTEM'), (select id from users where username = 'SYSTEM')),
-('caching', (select id from organizations where name = 'SYSTEM'), (select id from users where username = 'SYSTEM'), (select id from users where username = 'SYSTEM')),
-('rest', (select id from organizations where name = 'SYSTEM'), (select id from users where username = 'SYSTEM'), (select id from users where username = 'SYSTEM'));
+('front-end', (select id from organizations where name = 'system'), (select id from users where username = 'system'), (select id from users where username = 'system')),
+('back-end', (select id from organizations where name = 'system'), (select id from users where username = 'system'), (select id from users where username = 'system')),
+('framework', (select id from organizations where name = 'system'), (select id from users where username = 'system'), (select id from users where username = 'system')),
+('language', (select id from organizations where name = 'system'), (select id from users where username = 'system'), (select id from users where username = 'system')),
+('database', (select id from organizations where name = 'system'), (select id from users where username = 'system'), (select id from users where username = 'system')),
+('no-sql', (select id from organizations where name = 'system'), (select id from users where username = 'system'), (select id from users where username = 'system')),
+('caching', (select id from organizations where name = 'system'), (select id from users where username = 'system'), (select id from users where username = 'system')),
+('rest', (select id from organizations where name = 'system'), (select id from users where username = 'system'), (select id from users where username = 'system'));
 
 -- +goose Down
 

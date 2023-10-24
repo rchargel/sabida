@@ -11,7 +11,7 @@ CREATE TABLE organizations (
 );
 CREATE INDEX idx_organizations_deleted_at ON organizations(deleted_at);
 
-insert into organizations (name) values ('SYSTEM');
+insert into organizations (name) values ('system');
 
 CREATE TABLE users (
 	id 			UUID 			NOT NULL DEFAULT gen_random_uuid(),
@@ -26,7 +26,7 @@ CREATE TABLE users (
 );
 
 CREATE INDEX idx_users_deleted_at ON users(deleted_at);
-insert into users (username, email) values ('SYSTEM', 'SYSTEM@SYSTEM.COM');
+insert into users (username, email) values ('system', 'system@company.com');
 
 CREATE TABLE user_organizations (
 	user_id 			UUID 		NOT NULL,
@@ -60,10 +60,10 @@ CREATE TABLE user_organizations (
 CREATE INDEX idx_user_organizations_deleted_at ON user_organizations(deleted_at);
 
 insert into user_organizations (user_id, organization_id, created_by, updated_by) VALUES (
-	(select id from users where username = 'SYSTEM'),
-	(select id from organizations where name = 'SYSTEM'),
-	(select id from users where username = 'SYSTEM'),
-	(select id from users where username = 'SYSTEM')
+	(select id from users where username = 'system'),
+	(select id from organizations where name = 'system'),
+	(select id from users where username = 'system'),
+	(select id from users where username = 'system')
 );
 
 -- +goose Down
