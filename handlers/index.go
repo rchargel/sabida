@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	"context"
-	"log"
+	// "context"
+	// "log"
 
 	"github.com/rchargel/sabida/dao"
 
@@ -18,11 +18,12 @@ func NewIndexHandler(conn *dao.Queries) *IndexHandler {
 }
 
 func (i *IndexHandler) ShowIndexPage(c *gin.Context) {
-	ctx := context.Background()
-	categories, err := i.Conn.ListCategories(ctx)
-	if err != nil {
-		log.Panic(err)
-	}
+	// ctx := context.Background()
+	// categories, err := i.Conn.ListCategories(ctx)
+	// if err != nil {
+	// 	log.Panic(err)
+	// }
+	var categories []dao.Category
 
 	// Call the render function with the name of the template to render
 	render(c, gin.H{
