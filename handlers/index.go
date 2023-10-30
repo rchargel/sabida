@@ -3,6 +3,7 @@ package handlers
 import (
 	// "context"
 	// "log"
+	"database/sql"
 
 	"github.com/rchargel/sabida/dao"
 
@@ -15,6 +16,13 @@ type IndexHandler struct {
 
 func NewIndexHandler(conn *dao.Queries) *IndexHandler {
 	return &IndexHandler{conn}
+}
+
+func ToNullString(text string) sql.NullString {
+	return sql.NullString{
+		text,
+		true,
+	}
 }
 
 func (i *IndexHandler) ShowIndexPage(c *gin.Context) {

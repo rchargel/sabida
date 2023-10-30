@@ -36,7 +36,8 @@ RETURNING *;
 
 -- name: UpdatePassword :exec
 UPDATE users
-SET password = $2
+SET password = $2,
+    update_at = now()
 WHERE id = $1;
 
 -- name: DeleteUser :exec

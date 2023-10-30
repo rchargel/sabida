@@ -56,6 +56,7 @@ func (login *LoginHandler) generateJWT(user dao.User, ctx context.Context) (stri
 
 	claims["exp"] = time.Now().Add(30 * time.Minute)
 	claims["authorized"] = true
+	claims["uid"] = user.ID.String()
 	claims["user"] = user.Username
 	claims["email"] = user.Email
 	orgs, err := login.Conn.GetOrganizationsByUser(ctx, user.ID)
