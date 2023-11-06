@@ -3,7 +3,6 @@ package handlers
 import (
 	"context"
 	"net/http"
-	"os"
 
 	"github.com/google/uuid"
 
@@ -11,6 +10,7 @@ import (
 
 	"github.com/rchargel/sabida/dao"
 	"github.com/rchargel/sabida/models"
+	"github.com/rchargel/sabida/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -23,7 +23,7 @@ type UserHandler struct {
 func NewUserHandler(conn *dao.Queries) *UserHandler {
 	return &UserHandler{
 		conn,
-		[]byte(os.Getenv("SECRET_KEY")),
+		[]byte(utils.GetEnv("SECRET_KEY")),
 	}
 }
 

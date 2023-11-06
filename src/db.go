@@ -2,9 +2,9 @@ package main
 
 import (
 	"embed"
-	"fmt"
 	"log"
-	"os"
+
+	"github.com/rchargel/sabida/models"
 
 	"database/sql"
 
@@ -17,25 +17,8 @@ import (
 var migrations embed.FS
 
 func connectToDatabase() *sql.DB {
-	username := os.Getenv("DB_USERNAME")
-	password := os.Getenv("DB_PASSWORD")
-	scheme := os.Getenv("DB_SCHEME")
-	host := os.Getenv("DB_HOST")
-	port := os.Getenv("DB_PORT")
-	if host == "" {
-		host = "localhost"
-	}
-	if port == "" {
-		port = "5432"
-	}
-	connStr := fmt.Sprintf(
-		"postgres://%s:%s@%s:%s/%s?sslmode=disable",
-		username,
-		password,
-		host,
-		port,
-		scheme,
-	)
+	dbConfig := models.CreateDbConfig()
+	connStr := dbConfig.GetConnectionStr()
 
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {

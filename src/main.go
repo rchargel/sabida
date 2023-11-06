@@ -1,23 +1,13 @@
 package main
 
 import (
-	"os"
-	"log"
-	
 	"github.com/gin-gonic/gin"
+
 	"github.com/rchargel/sabida/dao"
 	"github.com/rchargel/sabida/handlers"
 )
 
 var router *gin.Engine
-
-func GetEnv(variable string) (string) {
-	v := os.Getenv(variable)
-	if v == nil {
-		log.Panicf("Missing environment variable %s", variable)
-	}
-	return v
-}
 
 func main() {
 	db := connectToDatabase()
