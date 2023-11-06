@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  posgres:
+    image: postgres:14-alpine
+    ports: 
+      - 5432:5432
+    volumes:
+      - ~/.postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=S3cret!
+      - POSTGRES_USER=sabida_user
+      - POSTGRES_DB=sabida_db
+    healthcheck:
+      test: nc -z localhost 5432 || exit -1
+      interval: 4s
+      timeout: 5s
+      retries: 3
+
+  sabida:
+    image: sabida:latest
+    ports:
+      - 8080:8080
+    depends_on:
+      posgres:
+        condition: service_healthy
+    environment:
+      - DB_USERNAME=sabida_user
+      - DB_PASSWORD=S3cret!
+      - DB_SCHEME=sabida_db
+      - DB_HOST=posgres
+      - DB_PORT=5432
+      - SECRET_KEY=abracadabra
